@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:34:09 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 17:59:58 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/05 20:23:58 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,32 @@
 int ft_printf(const char *str, ...)
 {
 	va_list ap;
-	t_struct *cr;
+	t_struct ts;
 
-	reset_f_v(cr);
+	reset_f_v(&ts);
 	va_start(ap, str);
-	while (*str)
+	while (str[ts.i])
 	{
-		if (*str != '%')
-			cr->rezult+= write(1, str, 1);
+		if (str[ts.i] != '%')
+			ts.rezult+= write(1, &str[ts.i++], 1);
 		else
 		{
-			if (*str == '%')
-				str++;
-			str = check_flag(str, cr);
-			str = check_width(str, ap, cr);
-			str = check_precision(str, ap, cr);
-			str = check_type(str, cr);
+			ts.i++;
+			check_flag(str, &ts);
+			check_width(str, ap, &ts);
+			check_precision(str, ap, &ts);
+			check_type(str, &ts);
 			// data_conversion();
 		}
-		str++;
 	}
 	va_end (ap);
-	return (cr->rezult);
+	return (ts.rezult);
 }
 
 int main()
 {
-	   printf("test1 text%-10.5s\n", "1234567890");
-	ft_printf("test2 text%-10.5s\n", "1234567890");
+	   printf("test1 text%-010.5s\n", "1234567890");
+	ft_printf("test2 text%-010.5s\n", "1234567890");
 	    printf("test3 text%10.5s\n", "1234567890");
 	 ft_printf("test4 text%10.5s\n", "1234567890");
    return (0);

@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 17:37:26 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:27:30 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int ft_strlen(const char *s)
 	return (len);
 }
 
-int ft_putstr(const char *str, int len, t_struct *cr)
+int ft_putstr(const char *str, int len, t_struct *ts)
 {
 	while (*str && len-- > 0)
-		cr->rezult += write(1, str++, 1);
-	return (cr->rezult);
+		ts->rezult += write(1, str++, 1);
+	return (ts->rezult);
 }

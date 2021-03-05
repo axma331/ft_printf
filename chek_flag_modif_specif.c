@@ -6,87 +6,81 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 17:53:06 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/05 20:45:57 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void reset_f_v(t_struct *cr)
+void reset_f_v(t_struct *ts)
 {
-    cr->flag = F_NULL;
-	cr->rezult = 0;
-	cr->width = 0;
-	cr->precision = 0;
-	cr->len_str = 0;
+    ts->flag = F_NULL;
+	ts->i = 0;
+	ts->rezult = 0;
+	ts->width = 0;
+	ts->precision = 0;
+	ts->len_str = 0;
+	ts->len_tmp = 0;
 }
 
-const char *check_flag(const char *str, t_struct *cr)
+void check_flag(const char *str, t_struct *ts)
 {
-	if (*str == '-')
+	if (str[ts->i] == '-')
 	{
-		cr->flag = cr->flag | F_MINS;
-		str++;
+		ts->flag = ts->flag | F_MINS;
+		ts->i++;
 	}
-	if (*str == '0')
+	if (str[ts->i] == '0')
 	{
-		cr->flag = cr->flag | F_ZERO;
-			if (cr->flag & F_MINS)
-			cr->flag = F_MINS;
-		str++;
+		ts->flag = ts->flag | F_ZERO;
+			if (ts->flag & F_MINS)
+			ts->flag = F_MINS;
+		ts->i++;
 	}
-	return str;
 }
 
-const char *check_width(const char *str, va_list ap, t_struct *cr)
+void check_width(const char *str, va_list ap, t_struct *ts)
 {
-	if (*str == '*')
-		cr->width = va_arg(ap, int);
-		if (cr->width < 0)
+	if (str[ts->i] == '*')
+	{
+		ts->width = va_arg(ap, int);
+		if (ts->width < 0)
 		{
-			cr->width *= -1;
-			cr->flag = cr->flag | F_MINS;
+			ts->width *= -1;
+			ts->flag = ts->flag | F_MINS;
 		}
+	}
 	else
-		while ('0' <= *str && *str <= '9')
-		{
-			cr->width = cr->width * 10 + (*str - '0');
-			str++;
-		}
-	return str;
+		while ('0' <= str[ts->i] && str[ts->i] <= '9')
+			ts->width = ts->width * 10 + (str[ts->i++] - '0');
 }
 
-const char *check_precision(const char *str, va_list ap, t_struct *cr)
+void check_precision(const char *str, va_list ap, t_struct *ts)
 {
-	if (*str == '.')
+	if (str[ts->i] == '.')
 	{
-		cr->flag = cr->flag | F_DOT;
-		if(*str++ == '*' || ('0' <= *str && *str <= '9'))
+		ts->flag = ts->flag | F_DOT;
+		if(str[ts->i++] == '*' || ('0' <= str[ts->i] && str[ts->i] <= '9'))
 		{
-			if (*str == '*')
+			if (str[ts->i] == '*')
 			{
-				cr->precision = va_arg(ap, int);
-				str++;
+				ts->precision = va_arg(ap, int);
+				ts->i++;
 			}
 			else
-				while ('0' <= *str && *str <= '9')
-				{
-					cr->precision = cr->precision * 10 + (*str - '0');
-					str++;
-				}
+				while ('0' <= str[ts->i] && str[ts->i] <= '9')
+					ts->precision = ts->precision * 10 + (str[ts->i++] - '0');
 		}
 		else
-			cr->precision = 0;
+			ts->precision = 0;
 	}
-	return str;
 }
 
-const char *check_type(const char *str, t_struct *cr)
+void check_type(const char *str, t_struct *ts)
 {
-	if (*str == 's')
+	if (str[ts->i] == 's')
 	{
-		output_type_s(str, cr);
-		str++;
+		output_type_s(&str[ts->i], ts); // Косяк! Надо исправить! Скорее всего va_arg надо использовать!
+		ts->i++;
 	}
-	return str;
 }
