@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:34:09 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/06 09:16:26 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 14:19:47 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int ft_printf(const char *str, ...)
 {
 	va_list ap;
 	t_struct ts;
-	t_type t;
 
+	ts.i = 0;
 	reset_f_v(&ts);
 	va_start(ap, str);
 	while (str[ts.i])
@@ -30,8 +30,8 @@ int ft_printf(const char *str, ...)
 			check_flag(str, &ts);
 			check_width(str, ap, &ts);
 			check_precision(str, ap, &ts);
-			check_type(str, &ts);
-			// data_conversion();
+			check_type(str, ap, &ts);
+			reset_f_v(&ts);
 		}
 	}
 	va_end (ap);

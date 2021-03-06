@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/06 09:17:12 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 14:21:16 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void reset_f_v(t_struct *ts)
 {
     ts->flag = F_NULL;
-	ts->i = 0;
 	ts->rezult = 0;
 	ts->width = 0;
 	ts->precision = 0;
@@ -76,11 +75,25 @@ void check_precision(const char *str, va_list ap, t_struct *ts)
 	}
 }
 
-void check_type(const char *str, t_struct *ts)
+int check_type(const char *str, va_list ap, t_struct *ts)
 {
 	if (str[ts->i] == 's')
-	{
-		output_type_s(&str[ts->i], ts); // Косяк! Надо исправить!
+		output_type_s(va_arg(ap, char*), ts);
+	if (str[ts->i] == 'c')
+		output_type_c(va_arg(ap, int), ts);
+	// if (str[ts->i] == 'd' || str[ts->i] == 'i')
+	// 	output_type_di(va_arg(ap, char*), ts);
+	// if (str[ts->i] == 's')
+	// 	output_type_s(va_arg(ap, char*), ts);
+	// if (str[ts->i] == 's')
+	// 	output_type_s(va_arg(ap, char*), ts);
+	// if (str[ts->i] == 's')
+	// 	output_type_s(va_arg(ap, char*), ts);
+	// if (str[ts->i] == 's')
+	// 	output_type_s(va_arg(ap, char*), ts);
+	// if (str[ts->i] == '%')
+	// 	output_type_s(va_arg(ap, char*), ts);
 		ts->i++;
-	}
+
+	return (ts->i);
 }
