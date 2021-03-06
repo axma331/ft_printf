@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:34:09 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 20:23:58 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:16:26 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int ft_printf(const char *str, ...)
 {
 	va_list ap;
 	t_struct ts;
+	t_type t;
 
 	reset_f_v(&ts);
 	va_start(ap, str);
@@ -35,13 +36,4 @@ int ft_printf(const char *str, ...)
 	}
 	va_end (ap);
 	return (ts.rezult);
-}
-
-int main()
-{
-	   printf("test1 text%-010.5s\n", "1234567890");
-	ft_printf("test2 text%-010.5s\n", "1234567890");
-	    printf("test3 text%10.5s\n", "1234567890");
-	 ft_printf("test4 text%10.5s\n", "1234567890");
-   return (0);
 }

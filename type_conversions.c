@@ -6,13 +6,13 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 19:27:04 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:06:30 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void output_type_s(const char *str,t_struct *ts)
+void output_type_s(const char *str, t_struct *ts)
 {
 	ts->len_str = ft_strlen(str);
 	if (!str)

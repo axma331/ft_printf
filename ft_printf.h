@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 19:28:51 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:15:01 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ typedef struct s_struct
 	char			type;
 }				t_struct;
 
+typedef struct s_type
+{
+	char			c;
+	char			*s;
+	unsigned char	uc;
+	int				i;
+	unsigned int	ui;
+	unsigned long	ul;
+}				t_type;
+
 int ft_strlen(const char *s);
 int ft_putstr(const char *str, int len, t_struct *ts);
 void reset_f_v(t_struct *ts);
@@ -43,6 +53,6 @@ void check_flag(const char *str, t_struct *ts);
 void check_width(const char *str, va_list ap, t_struct *ts);
 void check_precision(const char *str, va_list ap, t_struct *ts);
 void check_type(const char *str, t_struct *ts);
-void output_type_s(const char *str,t_struct *ts);
+void output_type_s(const char *str, t_struct *ts);
 
 #endif

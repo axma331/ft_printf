@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/05 20:45:57 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:17:12 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void check_type(const char *str, t_struct *ts)
 {
 	if (str[ts->i] == 's')
 	{
-		output_type_s(&str[ts->i], ts); // Косяк! Надо исправить! Скорее всего va_arg надо использовать!
+		output_type_s(&str[ts->i], ts); // Косяк! Надо исправить!
 		ts->i++;
 	}
 }
