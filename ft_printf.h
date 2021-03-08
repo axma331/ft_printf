@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/06 14:06:03 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:16:49 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ typedef struct s_struct
 	char			ch_p; //check protection ' 'or '0'
 }				t_struct;
 
-int ft_strlen(const char *s);
-int ft_putstr(const char *str, int len, t_struct *ts);
-void reset_f_v(t_struct *ts);
-void check_flag(const char *str, t_struct *ts);
-void check_width(const char *str, va_list ap, t_struct *ts);
-void check_precision(const char *str, va_list ap, t_struct *ts);
-int check_type(const char *str, va_list ap, t_struct *ts);
-int	output_type_s(const char *str, t_struct *ts);
-void output_type_c(int c, t_struct *ts);
+int		ft_strlen(const char *s);
+int		ft_putstr(const char *str, int len, t_struct *ts);
+void	reset_f_v(t_struct *ts);
+void	check_flag(const char *str, t_struct *ts);
+void	check_width(const char *str, va_list ap, t_struct *ts);
+void	check_precision(const char *str, va_list ap, t_struct *ts);
+void	check_type(const char *str, va_list ap, t_struct *ts);
+void	output_type_s(const char *str, t_struct *ts);
+void	output_type_c(int c, t_struct *ts);
 
 #endif

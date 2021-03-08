@@ -6,13 +6,13 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/06 14:21:16 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/06 16:17:10 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void reset_f_v(t_struct *ts)
+void	reset_f_v(t_struct *ts)
 {
     ts->flag = F_NULL;
 	ts->rezult = 0;
@@ -22,7 +22,7 @@ void reset_f_v(t_struct *ts)
 	ts->len_tmp = 0;
 }
 
-void check_flag(const char *str, t_struct *ts)
+void	check_flag(const char *str, t_struct *ts)
 {
 	if (str[ts->i] == '-')
 	{
@@ -38,7 +38,7 @@ void check_flag(const char *str, t_struct *ts)
 	}
 }
 
-void check_width(const char *str, va_list ap, t_struct *ts)
+void	check_width(const char *str, va_list ap, t_struct *ts)
 {
 	if (str[ts->i] == '*')
 	{
@@ -54,7 +54,7 @@ void check_width(const char *str, va_list ap, t_struct *ts)
 			ts->width = ts->width * 10 + (str[ts->i++] - '0');
 }
 
-void check_precision(const char *str, va_list ap, t_struct *ts)
+void	check_precision(const char *str, va_list ap, t_struct *ts)
 {
 	if (str[ts->i] == '.')
 	{
@@ -75,7 +75,7 @@ void check_precision(const char *str, va_list ap, t_struct *ts)
 	}
 }
 
-int check_type(const char *str, va_list ap, t_struct *ts)
+void	check_type(const char *str, va_list ap, t_struct *ts)
 {
 	if (str[ts->i] == 's')
 		output_type_s(va_arg(ap, char*), ts);
@@ -94,6 +94,4 @@ int check_type(const char *str, va_list ap, t_struct *ts)
 	// if (str[ts->i] == '%')
 	// 	output_type_s(va_arg(ap, char*), ts);
 		ts->i++;
-
-	return (ts->i);
 }
