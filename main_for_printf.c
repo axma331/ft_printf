@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 08:03:01 by chemelin          #+#    #+#             */
-/*   Updated: 2021/03/06 16:16:52 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:09:57 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ int				ft_printf(const char *str, ...);
 int main()
 {
 	printf("\n--------------General check-------------\n");
-	int a1, b1, b;
-	b1 = printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
-	a1 = ft_printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
-	printf("%d %d\n", a1, b1);
-	a1 = ft_printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
-	b1 = printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
-	printf("%d %d\n", a1, b1);
-	char *ptr = NULL;
-	printf("|%p %s|\n", NULL, ptr);
-	ft_printf("|%p %s|\n", NULL, ptr);
+	int a1;
+	// b1 = printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
+	// a1 = ft_printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
+	a1 = printf("|%-5d|\n", -7);
+	a1 = ft_printf("|%-5d|\n", -7);
+	// printf("%d %d\n", a1, b1);
+	// a1 = ft_printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
+	// b1 = printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
+	// printf("%d %d\n", a1, b1);
+	// char *ptr = NULL;
+	// printf("|%p %s|\n", NULL, ptr);
+	// ft_printf("|%p %s|\n", NULL, ptr);
 
 // 	printf("\n--------------Check for i-------------\n");
 // //	ft_printf("|% +i|\n",   10);
