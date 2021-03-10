@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 08:03:01 by chemelin          #+#    #+#             */
-/*   Updated: 2021/03/10 22:06:17 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/11 00:53:20 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int main()
 	// b = 45;
 	// b1 = printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
 	// a1 = ft_printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
-	a1 = printf("|%-.*d|\n", -23, 12345);
-	a1 = ft_printf("|%-.*d|\n", -23, 12345);
+	   a1 = printf("|hello, %.*s|\n", -3, 0);
+	a1 = ft_printf("|hello, %.*s|\n", -3, 0);
 
 	// a1 = printf("|%p|\n", &b);
 	// a1 = ft_printf("|%.*p|\n", -3, &b);

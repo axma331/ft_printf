@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 23:10:37 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/11 01:03:35 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,20 @@ void	output_type_c(int c, t_struct *ts)
 		ts->result += write(1, &c, 1);
 }
 
-void	output_type_s(const char *str_n, t_struct *ts)
+void	output_type_s(const char *str, t_struct *ts)
 {
-	ts->len_s = ft_strlen(str_n);
-	if (!str_n)
-		str_n = "(null)";
-	if (ts->width >= ts->len_s)
-	{
-		if (ts->prcs > 0)
-			ts->len_s = ts->prcs;
-		ts->len_t = (ts->width - ts->len_s);
-		if (ts->flag & F_MIN)
-			ft_putstr(str_n, ts->len_s, ts);
-		while (ts->len_t-- > 0)
-			ts->result += write(1, " ", 1);
-		if (!(ts->flag & F_MIN))
-			ft_putstr(str_n, ts->len_s, ts);
-	}
-	else
-		ft_putstr(str_n, ts->len_s, ts);
+	if (!str)
+		str = "(null)";
+	ts->len_s = ft_strlen(str);
+	if (ts->flag & F_DOT && ts->prcs > -1 && ts->prcs < ts->len_s)
+		ts->len_s = ts->prcs;
+	ts->len_t = (ts->width - ts->len_s);
+	if (ts->flag & F_MIN)
+		ft_putstr(str, ts->len_s, ts);
+	while (ts->len_t-- > 0)
+		ts->result += write(1, " ", 1);
+	if (!(ts->flag & F_MIN))
+		ft_putstr(str, ts->len_s, ts);
 }
 
 void	output_type_u(unsigned int n, t_struct *ts)
