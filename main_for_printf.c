@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 08:03:01 by chemelin          #+#    #+#             */
-/*   Updated: 2021/03/09 19:09:57 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:09:38 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int main()
 	int a1;
 	// b1 = printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
 	// a1 = ft_printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
-	a1 = printf("|%-5d|\n", -7);
-	a1 = ft_printf("|%-5d|\n", -7);
+	a1 = printf("|%-%09.1d|\n", -2);
+	a1 = ft_printf("|%-%09.1d|\n", -2);
 	// printf("%d %d\n", a1, b1);
 	// a1 = ft_printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
 	// b1 = printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);

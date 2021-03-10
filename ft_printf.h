@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/09 18:44:18 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:08:44 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,18 @@
 # define F_MIN	0b00000001
 # define F_ZRO	0b00000010
 # define F_DOT	0b00000100
-// # define F_LJST 0b00001000 //left justified - выравнивания по левому краю
-# define F_ZFIL 0b00010000 // zero filled - Заполнение левый край нулями
 
 typedef struct s_struct
 {
 	unsigned int	result;
 	unsigned char	flag;
-    int				len_tmp;
-	int				i;
-    int 			len_str;
-	int				width; // Минимальная ширина
-	int				precision;
 	int				neg;
-	char			*s_z; //spase or zero
+	int				i;
+    int				len_t;
+    int 			len_s;
+	int				width; // Минимальная ширина
+	int				prcs;
+	// char			*s_z; //spase or zero
 }				t_struct;
 
 char	*ft_itoa(int n);

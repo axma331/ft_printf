@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/09 18:44:57 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:53:10 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@ void	reset_f_v(t_struct *ts)
     ts->flag = F_NUL;
 	ts->result = 0;
 	ts->width = 0;
-	ts->precision = 0;
+	ts->prcs = -1;
 	ts->neg = 0;
-	ts->len_str = 0;
-	ts->len_tmp = 0;
-	ts->s_z = " ";
+	ts->len_s = 0;
+	ts->len_t = 0;
 }
 
 void	check_flag(const char *str, t_struct *ts)
 {
+	// if (str[ts->i] == ' ')
+	// 	ts->result+= write(1, &str[ts->i++], 1);
 	if (str[ts->i] == '-')
 	{
 		ts->flag = ts->flag | F_MIN;
@@ -33,11 +34,7 @@ void	check_flag(const char *str, t_struct *ts)
 	}
 	if (str[ts->i] == '0')
 	{
-		ts->flag = ts->flag | F_ZRO;
-			if (ts->flag & F_MIN)
-				ts->flag = F_MIN;
-			if (!(ts->flag & F_MIN))
-				ts->s_z = "0";
+		ts->flag = ts->flag & F_MIN ? ts->flag & F_MIN : ts->flag | F_ZRO;
 		ts->i++;
 	}
 }
@@ -63,19 +60,18 @@ void	check_precision(const char *str, va_list ap, t_struct *ts)
 	if (str[ts->i] == '.')
 	{
 		ts->flag = ts->flag | F_DOT;
+		ts->prcs = 0;
 		if(str[ts->i++] == '*' || ('0' <= str[ts->i] && str[ts->i] <= '9'))
 		{
 			if (str[ts->i] == '*')
 			{
-				ts->precision = va_arg(ap, int);
+				ts->prcs = va_arg(ap, int);
 				ts->i++;
 			}
 			else
 				while ('0' <= str[ts->i] && str[ts->i] <= '9')
-					ts->precision = ts->precision * 10 + (str[ts->i++] - '0');
+					ts->prcs = ts->prcs * 10 + (str[ts->i++] - '0');
 		}
-		else
-			ts->precision = 0;
 	}
 }
 

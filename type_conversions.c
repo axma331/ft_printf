@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/09 19:09:42 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:07:42 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	output_type_s(const char *str_n, t_struct *ts)
 {
-	ts->len_str = ft_strlen(str_n);
+	ts->len_s = ft_strlen(str_n);
 	if (!str_n)
 		str_n = "(null)";
-	if (ts->width >= ts->len_str) //&& ts->precision
+	if (ts->width >= ts->len_s) //&& ts->prcs
 	{
-		if (ts->precision > 0)
-			ts->len_str = ts->precision;
-		ts->len_tmp = (ts->width - ts->len_str);
+		if (ts->prcs > 0)
+			ts->len_s = ts->prcs;
+		ts->len_t = (ts->width - ts->len_s);
 		if (ts->flag & F_MIN)
-			ft_putstr(str_n, ts->len_str, ts);
-		while (ts->len_tmp-- > 0)
+			ft_putstr(str_n, ts->len_s, ts);
+		while (ts->len_t-- > 0)
 			ts->result += write(1, " ", 1);
 		if (!(ts->flag & F_MIN))
-			ft_putstr(str_n, ts->len_str, ts);
+			ft_putstr(str_n, ts->len_s, ts);
 	}
 	else
-		ft_putstr(str_n, ts->len_str, ts);
+		ft_putstr(str_n, ts->len_s, ts);
 }
 
 void	output_type_c(int c, t_struct *ts)
@@ -46,35 +46,42 @@ void	output_type_c(int c, t_struct *ts)
 void	output_type_di(int n, t_struct *ts)
 {
 	char	*str_n;
-	
+
 	ts->neg = (n < 0) ? 1 : 0;
-	str_n = ft_itoa(n) + ts->neg;
-	ts->len_str = ft_strlen(str_n);
+	if (!(ts->prcs == 0 && n == 0))
+		str_n = ts->neg + ft_itoa(n);
+	else 
+		write(1, "", 1);
+	ts->len_s = ft_strlen(str_n);
+	ts->len_t = ts->len_s;
 	if(ts->flag & F_MIN)
 	{
-		if(ts->neg)
+		if (ts->neg)
 			ts->result += write(1, "-", 1);
-		ts->result += write(1, str_n, (ts->len_str - ts->neg));
-	}
-	if (ts->width)
-		if ((ts->len_tmp = ts->width - ts->len_str - ts->neg) > 0)
+		while (ts->len_t < ts->prcs)
 		{
-			while (ts->len_tmp-- > 0)
-				ts->result += write(1, ts->s_z, 1);
+			ts->result += write(1, "0", 1);
+			ts->len_t++;
 		}
-	if (!(ts->flag & F_MIN))
+		ts->result += write(1, str_n, ts->len_s);
+		while (ts->len_t++ < (ts->width - ts->neg))
+			ts->result += write(1, " ", 1);	
+	}
+	else
 	{
-		if(ts->neg)
+		if (ts->len_s < ts->prcs)
+			ts->len_s = ts->prcs;
+		while (ts->len_s++ + ts->neg < ts->width)
+			ts->result += write(1, " ", 1);
+		if (ts->neg)
 			ts->result += write(1, "-", 1);
-		ts->result += write(1, str_n, ts->len_str);
+		while ((ts->prcs > ts->len_t++ && ts->prcs))
+			ts->result += write(1, "0", 1);
+		ts->result += write(1, str_n, ft_strlen(str_n));	
 	}
 }
 
 void	output_type_u(unsigned int n, t_struct *ts)
 {
-	char	*str_n;
 	
-	str_n = ft_itoa(n);
-	ts->len_str = ft_strlen(str_n);
-	ts->result += write(1, str_n, ft_strlen(str_n));
 }
