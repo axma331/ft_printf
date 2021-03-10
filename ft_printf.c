@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:34:09 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 14:09:03 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:04:00 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ int ft_printf(const char *str, ...)
 			ts.i++;
 			if (str[ts.i] == '%')
 				ts.result+= write(1, &str[ts.i], 1);
-			check_flag(str, &ts);
-			check_width(str, ap, &ts);
-			check_precision(str, ap, &ts);
+			while (str[ts.i] == '-' || str[ts.i] == '0' || str[ts.i] == '*' || str[ts.i] == '.' || ('0' <= str[ts.i] && str[ts.i] <= '9'))
+			{			
+				check_flag(str, &ts);
+				check_width(str, ap, &ts);
+				check_precision(str, ap, &ts);
+			}
 			check_type(str, ap, &ts);
 			reset_f_v(&ts);
 		}

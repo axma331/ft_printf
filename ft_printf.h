@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 16:08:44 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 17:54:11 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	check_type(const char *str, va_list ap, t_struct *ts);
 void	output_type_s(const char *str, t_struct *ts);
 void	output_type_c(int c, t_struct *ts);
 void	output_type_di(int n, t_struct *ts);
-void	output_type_u(unsigned int n, t_struct *ts);
+// void	output_type_u(unsigned int n, t_struct *ts);
 
 #endif
