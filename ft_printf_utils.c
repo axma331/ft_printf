@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/09 17:02:01 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 20:58:21 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		count(long int n)
 	return (i);
 }
 
-char	*ft_itoa( int n)
+char	*ft_litoa(long int n)
 {
 	char		*str_n;
 	long int	num;

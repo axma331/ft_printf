@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 08:03:01 by chemelin          #+#    #+#             */
-/*   Updated: 2021/03/10 19:11:43 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 21:21:16 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@ int main()
 {
 	printf("\n--------------General check-------------\n");
 	int a1;
+	int b;
+
+	b = 45;
+
 	// b1 = printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
 	// a1 = ft_printf("Chislo:|%-5s|kust and |%9c|. This sum is |%i|. This is |%%|. And now unsigned: |%u|\n", "abra", 'e', 56, -43);
-	a1 = printf("|%.*d|\n", -3, 12345);
-	a1 = ft_printf("|%.*d|\n", -3, 12345);
+	a1 = printf("|%.*u|\n", -3, 12345);
+	// a1 = ft_printf("|%*u|\n", -3, 12345);
+
+	a1 = printf("|%p|\n", &b);
+	// a1 = ft_printf("|%.*p|\n", -3, &b);
 	// printf("%d %d\n", a1, b1);
 	// a1 = ft_printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);
 	// b1 = printf("and now heximal: |%8x|, |%X|\n", 5554645, -123);

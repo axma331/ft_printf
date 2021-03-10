@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 19:53:45 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 21:42:20 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reset_f_v(t_struct *ts)
 	ts->neg = 0;
 	ts->len_s = 0;
 	ts->len_t = 0;
-	// ts->s_z = " ";
+	ts->str_n = "";
 }
 
 void	check_flag(const char *str, t_struct *ts)
@@ -77,16 +77,27 @@ void	check_precision(const char *str, va_list ap, t_struct *ts)
 	}
 }
 
+void	check_f_w_p(const char *str, va_list ap, t_struct *ts)
+{
+	while (str[ts->i] == '-' || str[ts->i] == '0' || str[ts->i] == '*' ||
+			str[ts->i] == '.' || ('0' <= str[ts->i] && str[ts->i] <= '9'))
+	{			
+		check_flag(str, ts);
+		check_width(str, ap, ts);
+		check_precision(str, ap, ts);
+	}
+}
+
 void	check_type(const char *str, va_list ap, t_struct *ts)
 {
 	if (str[ts->i] == 's')
 		output_type_s(va_arg(ap, char*), ts);
 	if (str[ts->i] == 'c')
 		output_type_c(va_arg(ap, int), ts);
-	if (str[ts->i] == 'd' || str[ts->i] == 'i' || str[ts->i] == 'u')
+	if (str[ts->i] == 'd' || str[ts->i] == 'i')
 		output_type_di(va_arg(ap, int), ts);
-	// if (str[ts->i] == 'u')
-	// 	output_type_u(va_arg(ap, unsigned int), ts);
+	if (str[ts->i] == 'u')
+		output_type_u(va_arg(ap, unsigned int), ts);
 	// if (str[ts->i] == 's')
 	// 	output_type_s(va_arg(ap, char*), ts);
 	// if (str[ts->i] == 's')

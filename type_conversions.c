@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 20:10:44 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 21:45:03 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void	output_type_c(int c, t_struct *ts)
 
 void	output_type_di(int n, t_struct *ts)
 {
-	char	*str_n;
-
 	ts->neg = (n < 0) ? 1 : 0;
-	str_n = (ts->prcs == 0 && n == 0) ? "" : (ts->neg + ft_itoa(n));
-	ts->len_s = ft_strlen(str_n);
+	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : (ts->neg + ft_litoa(n));
+	ts->len_s = ft_strlen(ts->str_n);
 	ts->len_t = ts->len_s;
 	if(ts->flag & F_MIN)
 	{
@@ -60,7 +58,7 @@ void	output_type_di(int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 			ts->len_t++;
 		}
-		ts->result += write(1, str_n, ts->len_s);
+		ts->result += write(1, ts->str_n, ts->len_s);
 		while (ts->len_t++ < (ts->width - ts->neg))
 			ts->result += write(1, " ", 1);	
 	}
@@ -68,7 +66,7 @@ void	output_type_di(int n, t_struct *ts)
 	{
 		if (ts->len_s < ts->prcs)
 			ts->len_s = ts->prcs;
-		while (!(ts->flag & F_ZRO) && (ts->width > ts->neg + ts->len_s++)) //ts->prcs != -1 && 
+		while (!(ts->flag & F_ZRO) && (ts->width > ts->neg + ts->len_s++))
 			ts->result += write(1, " ", 1);
 		if (ts->neg)
 			ts->result += write(1, "-", 1);
@@ -76,11 +74,35 @@ void	output_type_di(int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		while (ts->prcs > ts->len_t++)
 			ts->result += write(1, "0", 1);
-		ts->result += write(1, str_n, ft_strlen(str_n));	
+		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));	
 	}
 }
 
-// void	output_type_u(unsigned int n, t_struct *ts)
-// {
-	
-// }
+void	output_type_u(unsigned int n, t_struct *ts)
+{
+	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : ft_litoa(n);
+	ts->len_s = ft_strlen(ts->str_n);
+	ts->len_t = ts->len_s;
+	if(ts->flag & F_MIN)
+	{
+		while (ts->prcs > ts->len_t)
+		{
+			ts->result += write(1, "0", 1);
+			ts->len_t++;
+		}
+		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
+		while (ts->len_t++ < ts->width)
+			ts->result += write(1, " ", 1);	
+	}
+	else
+	{
+		ts->len_s < ts->prcs ? ts->len_s = ts->prcs : 0;
+		while (!(ts->flag & F_ZRO) && (ts->width > ts->len_s++))
+			ts->result += write(1, " ", 1);
+		while ((ts->flag & F_ZRO) && ts->len_s++ < ts->width)
+			ts->result += write(1, "0", 1);
+		while (ts->prcs > ts->len_t++)
+			ts->result += write(1, "0", 1);
+		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));	
+	}
+}
