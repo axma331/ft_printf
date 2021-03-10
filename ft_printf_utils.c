@@ -6,23 +6,23 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 20:58:21 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 23:03:47 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int 	ft_strlen(const char *s)
+int		ft_strlen(const char *s)
 {
 	int len;
 
 	len = 0;
-	while(s[len])
+	while (s[len])
 		len++;
 	return (len);
 }
 
-int 	ft_putstr(const char *str, int len, t_struct *ts)
+int		ft_putstr(const char *str, int len, t_struct *ts)
 {
 	while (str && len-- > 0)
 	{
@@ -63,13 +63,13 @@ char	*ft_litoa(long int n)
 		str_n[0] = '-';
 	num = n;
 	if (num < 0)
-		num  = -num;
+		num = -num;
 	str_n[count(n) - i++] = '\0';
 	while (num > 9)
 	{
 		str_n[count(n) - i++] = (num % 10) + '0';
 		num /= 10;
-	} 
+	}
 	str_n[count(n) - i] = (num % 10) + '0';
 	return (str_n);
 }

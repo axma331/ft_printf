@@ -6,7 +6,7 @@
 #    By: feschall <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/10 16:46:49 by feschall          #+#    #+#              #
-#    Updated: 2021/03/10 16:52:49 by feschall         ###   ########.fr        #
+#    Updated: 2021/03/10 23:08:18 by feschall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ NAME = libftprintf.a
 
 HEADER = ft_printf.h
 
-SRCS = ft_printf.c chek_flag_modif_specif.c ft_printf_utils.c \
-		type_conversions.c
+SRCS = ft_printf.c ft_printf_chek_fmst.c ft_printf_utils.c \
+		ft_printf_type_csudi.c  
 
 OBJS = $(SRCS:.c=.o)
 

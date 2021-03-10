@@ -6,16 +6,16 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:34:09 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/10 21:43:30 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/10 22:45:00 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list ap;
-	t_struct ts;
+	va_list		ap;
+	t_struct	ts;
 
 	ts.i = 0;
 	reset_f_v(&ts);
@@ -23,17 +23,17 @@ int ft_printf(const char *str, ...)
 	while (str[ts.i])
 	{
 		if (str[ts.i] != '%')
-			ts.result+= write(1, &str[ts.i++], 1);
+			ts.result += write(1, &str[ts.i++], 1);
 		else
 		{
 			ts.i++;
 			if (str[ts.i] == '%')
-				ts.result+= write(1, &str[ts.i], 1);
+				ts.result += write(1, &str[ts.i], 1);
 			check_f_w_p(str, ap, &ts);
 			check_type(str, ap, &ts);
 			reset_f_v(&ts);
 		}
 	}
-	va_end (ap);
+	va_end(ap);
 	return (ts.result);
 }
