@@ -1,8 +1,9 @@
+.DS_Store
 a.out
 a.out.dSYM
 .vscode
 pft_2019/
 pft/
 *.o
-*.gch
+*.h.gch
 main*
