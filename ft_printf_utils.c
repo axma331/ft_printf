@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/11 00:15:04 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/11 23:45:59 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_putstr(const char *str, int len, t_struct *ts)
 	return (ts->result);
 }
 
-int		count(long int n)
+int		count_b(long int n, t_struct *ts)
 {
 	int i;
 
@@ -42,34 +42,36 @@ int		count(long int n)
 		n = -n;
 		i++;
 	}
-	while (n > 9)
+	while (n > ts->dev)
 	{
-		n /= 10;
+		n /= ts->dev;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_litoa(long int n)
+char	*ft_litoa_b(long int n, t_struct *ts)
 {
 	char		*str_n;
+	char		ascii;
 	long int	num;
 	int			i;
 
 	i = 0;
-	if (!(str_n = (char *)malloc(sizeof(char) * count(n) + 1)))
+	if (!(str_n = (char *)malloc(sizeof(char) * (count_b(n, ts) + 1))))
 		return (0);
 	if (n < 0)
 		str_n[0] = '-';
 	num = n;
 	if (num < 0)
 		num = -num;
-	str_n[count(n) - i++] = '\0';
-	while (num > 9)
+	str_n[count_b(n, ts) - i++] = '\0';
+	while (num >= 10)
 	{
-		str_n[count(n) - i++] = (num % 10) + '0';
-		num /= 10;
+		ascii = (num % ts->dev > 9) ? ts->ca : '0';
+		str_n[count_b(n, ts) - i++] = (num % ts->dev) + ascii;
+		num /= ts->dev;
 	}
-	str_n[count(n) - i] = (num % 10) + '0';
+	str_n[count_b(n, ts) - i] = (num % ts->dev) + '0';
 	return (str_n);
 }

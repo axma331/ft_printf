@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/11 01:03:35 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/11 22:11:47 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	output_type_s(const char *str, t_struct *ts)
 
 void	output_type_u(unsigned int n, t_struct *ts)
 {
-	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : ft_litoa(n);
+	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : ft_litoa_b(n, ts);
 	ts->len_s = ft_strlen(ts->str_n);
 	ts->len_t = ts->len_s;
 	if (ts->flag & F_MIN)
@@ -70,7 +70,7 @@ void	output_type_u(unsigned int n, t_struct *ts)
 void	output_type_di(int n, t_struct *ts)
 {
 	ts->neg = (n < 0) ? 1 : 0;
-	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : (ts->neg + ft_litoa(n));
+	ts->str_n = (ts->prcs == 0 && n == 0) ? "" : (ts->neg + ft_litoa_b(n, ts));
 	ts->len_s = ft_strlen(ts->str_n);
 	ts->len_t = ts->len_s;
 	if (ts->flag & F_MIN)
