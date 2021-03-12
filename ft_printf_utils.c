@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 06:14:39 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 08:32:02 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int		count_b(long int n, t_struct *ts)
 	i = 1;
 	if (n < 0)
 	{
-		n = -n;
+		n = (-1) * n;
 		i++;
 	}
-	while (n > ts->dev)
+	while (n >= ts->dev)
 	{
 		n /= ts->dev;
 		i++;

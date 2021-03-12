@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 06:14:52 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 08:15:54 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_struct
 	int				prcs;
 	int				dev;
 	int				ca;
-	unsigned int	result;
+	int				result;
 }					t_struct;
 
 char				*ft_litoa_b(long int n, t_struct *ts);
