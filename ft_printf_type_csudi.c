@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 09:40:18 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:16:35 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	output_type_u(unsigned int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
-	free(ts->str_n);
 }
 
 void	output_type_di(int n, t_struct *ts)
@@ -90,7 +89,6 @@ void	output_type_di(int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
-	free(ts->str_n);
 }
 
 void	output_type_dix_lt(t_struct *ts)

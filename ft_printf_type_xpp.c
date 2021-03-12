@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 23:06:41 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 09:39:26 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 09:57:19 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	output_type_x(unsigned int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
-	free(ts->str_n);
+	// free(ts->str_n);
 }
 
 void	output_type_p(unsigned long n, t_struct *ts)
@@ -62,7 +62,7 @@ void	output_type_p(unsigned long n, t_struct *ts)
 		ts->result += write(1, "0x", 2);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
-	free(ts->str_n);
+	// free(ts->str_n);
 
 }
 

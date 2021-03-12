@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 09:23:07 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:05:38 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void				reset_f_v(t_struct *ts);
 void				check_flag_width(const char *str, va_list ap, t_struct *ts);
 void				check_precision(const char *str, va_list ap, t_struct *ts);
 void				check_f_w_p(const char *str, va_list ap, t_struct *ts);
-void				check_type(const char *str, va_list ap, t_struct *ts);
+int					check_type(const char *str, va_list ap, t_struct *ts);
 void				output_type_c(int c, t_struct *ts);
 void				output_type_s(const char *str, t_struct *ts);
 void				output_type_u(unsigned int n, t_struct *ts);
