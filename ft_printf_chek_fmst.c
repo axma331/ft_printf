@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 06:36:29 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 07:26:45 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,21 @@ void	check_precision(const char *str, va_list ap, t_struct *ts)
 	{
 		ts->flag = ts->flag | F_DOT;
 		ts->prcs = 0;
-		ts->flag = ts->flag & 0b11111101;
 		if (str[++ts->i] == '*' || ('0' <= str[ts->i] && str[ts->i] <= '9'))
 		{
 			if (str[ts->i] == '*')
 			{
 				ts->prcs = va_arg(ap, int);
 				ts->i++;
+				ts->flag = ts->prcs < 0 ? ts->flag & 0b11111111 :
+											ts->flag & 0b11111101;
 			}
 			else
+			{
 				while ('0' <= str[ts->i] && str[ts->i] <= '9')
 					ts->prcs = ts->prcs * 10 + (str[ts->i++] - '0');
+				ts->flag = ts->flag & 0b11111101;
+			}
 		}
 	}
 }
