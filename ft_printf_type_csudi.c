@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:01:05 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 06:46:56 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 09:40:18 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	output_type_u(unsigned int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
+	free(ts->str_n);
 }
 
 void	output_type_di(int n, t_struct *ts)
@@ -74,7 +75,7 @@ void	output_type_di(int n, t_struct *ts)
 	ts->len_s = ft_strlen(ts->str_n);
 	ts->len_t = ts->len_s;
 	if (ts->flag & F_MIN)
-		output_type_di_lt(ts);
+		output_type_dix_lt(ts);
 	else
 	{
 		if (ts->len_s < ts->prcs)
@@ -89,9 +90,10 @@ void	output_type_di(int n, t_struct *ts)
 			ts->result += write(1, "0", 1);
 		ts->result += write(1, ts->str_n, ft_strlen(ts->str_n));
 	}
+	free(ts->str_n);
 }
 
-void	output_type_di_lt(t_struct *ts)
+void	output_type_dix_lt(t_struct *ts)
 {
 	if (ts->neg)
 		ts->result += write(1, "-", 1);
@@ -100,6 +102,8 @@ void	output_type_di_lt(t_struct *ts)
 		ts->result += write(1, "0", 1);
 		ts->len_t++;
 	}
+	if (ts->dev == 16)
+		ts->result += write(1, "0x", 2);
 	ts->result += write(1, ts->str_n, ts->len_s);
 	while (ts->len_t++ < (ts->width - ts->neg))
 		ts->result += write(1, " ", 1);
