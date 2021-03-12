@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:31:51 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 09:37:17 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 21:15:32 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_strlen(const char *s)
 	int len;
 
 	len = 0;
+	if (!s)
+		return (0);
 	while (s[len])
 		len++;
 	return (len);

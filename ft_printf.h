@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/12 11:05:38 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 18:48:24 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ typedef struct		s_struct
 	unsigned char	flag;
 	int				neg;
 	int				i;
+	int				ox;
 	int				len_t;
 	int				len_s;
-	int				width;
+	int				wid;
 	int				prcs;
 	int				dev;
 	int				ca;
@@ -52,6 +53,7 @@ void				output_type_s(const char *str, t_struct *ts);
 void				output_type_u(unsigned int n, t_struct *ts);
 void				output_type_di(int n, t_struct *ts);
 void				output_type_dix_lt(t_struct *ts);
+void				output_type_dix_rt(t_struct *ts);
 void				output_type_x(unsigned int n, t_struct *ts);
 void				output_type_p(unsigned long n, t_struct *ts);
 void				output_type_per(t_struct *ts);

@@ -6,7 +6,7 @@
 #    By: feschall <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/10 16:46:49 by feschall          #+#    #+#              #
-#    Updated: 2021/03/12 09:14:51 by feschall         ###   ########.fr        #
+#    Updated: 2021/03/12 19:23:14 by feschall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = libftprintf.a
 HEADER = ft_printf.h
 
 SRCS = ft_printf.c ft_printf_chek_fmst.c ft_printf_utils.c \
-		ft_printf_type_csudi.c ft_printf_type_xpp.c
+		ft_printf_type_sudi.c ft_printf_type_cxpp.c
 
 OBJS = $(SRCS:.c=.o)
 
