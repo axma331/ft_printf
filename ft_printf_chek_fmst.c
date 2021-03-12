@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 21:26:27 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/11 23:52:30 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 06:36:29 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	reset_f_v(t_struct *ts)
 {
 	ts->flag = F_NUL;
-	ts->result = 0;
 	ts->width = 0;
 	ts->prcs = -1;
 	ts->neg = 0;
 	ts->len_s = 0;
 	ts->len_t = 0;
 	ts->dev = 10;
-	ts->str_n = "";
+	ts->ca = 87;
+	ts->str_n = NULL;
 }
 
 void	check_flag_width(const char *str, va_list ap, t_struct *ts)
@@ -45,7 +45,9 @@ void	check_flag_width(const char *str, va_list ap, t_struct *ts)
 		{
 			ts->width *= -1;
 			ts->flag = ts->flag | F_MIN;
+			ts->flag = ts->flag & 0b11111101;
 		}
+		ts->i++;
 	}
 	else
 		while ('0' <= str[ts->i] && str[ts->i] <= '9')
@@ -99,7 +101,12 @@ void	check_type(const char *str, va_list ap, t_struct *ts)
 		ts->ca = str[ts->i] == 'X' ? 55 : 87;
 		output_type_x(va_arg(ap, unsigned int), ts);
 	}
-	// if (str[ts->i] == 'p')
-	// 	output_type_p(va_arg(ap, char*), ts);
+	if (str[ts->i] == 'p')
+	{
+		ts->dev = 16;
+		output_type_p(va_arg(ap, unsigned long), ts);
+	}
+	if (str[ts->i] == '%')
+		output_type_per(ts);
 	ts->i++;
 }

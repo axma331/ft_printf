@@ -6,7 +6,7 @@
 /*   By: feschall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:37:24 by feschall          #+#    #+#             */
-/*   Updated: 2021/03/11 23:51:22 by feschall         ###   ########.fr       */
+/*   Updated: 2021/03/12 06:14:52 by feschall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ void				output_type_u(unsigned int n, t_struct *ts);
 void				output_type_di(int n, t_struct *ts);
 void				output_type_di_lt(t_struct *ts);
 void				output_type_x(unsigned int n, t_struct *ts);
+void				output_type_p(unsigned long n, t_struct *ts);
+void				output_type_per(t_struct *ts);
 
 #endif
