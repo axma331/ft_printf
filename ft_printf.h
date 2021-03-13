@@ -57,5 +57,6 @@ void				output_type_dix_rt(t_struct *ts);
 void				output_type_x(unsigned int n, t_struct *ts);
 void				output_type_p(unsigned long n, t_struct *ts);
 void				output_type_per(t_struct *ts);
+int				ft_printf(const char *str, ...)
 
 #endif
